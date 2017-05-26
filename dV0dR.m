@@ -1,5 +1,5 @@
 function [deriv] = dV0dR(nucleus)
-% Calculate 4th order approx to dR/dR
+% Calculate 4th order approx to dV/dR
 
 % General case
 global paramObj
@@ -12,7 +12,7 @@ reC = (lengthC + 1) / 2;
 for j = 1:dim
     for i = 1:lengthC
         loopNuc = nucleus;
-        loopNuc.pos(j, 1) = loopNuc.pos(j, 1) + ...
+        loopNuc.pos(j) = loopNuc.pos(j) + ...
             (i - reC) * diff;
         deriv(j) = deriv(j) + coeff(i) * calcV0(loopNuc) / diff;
     end
