@@ -1,4 +1,4 @@
-function [deriv] = dThetadxp(nuclei, electrons, alpha, type)
+function [deriv] = dThetadxp(system, alpha, type)
 % Calculate dTheta/dR using fourth order finite differencing methods. Seems
 % sort of inefficient, ask Joe if there is a better way to do this...
 global paramObj
@@ -10,15 +10,15 @@ lengthC = length(coeff);
 reC = (lengthC + 1) / 2;
 for j = 1:dim
     for i = 1:lengthC
-        loopElec = electrons;
+        loopSys = system;
         if (type == 'p')
-            loopElec(alpha).mom(j, 1) = loopElec(alpha).mom(j, 1) + ...
+            loopSys.electrons(alpha).mom(j) = loopSys.electrons(alpha).mom(j) + ...
             (i - reC) * diff;
         elseif (type == 'x')
-            loopElec(alpha).pos(j, 1) = loopElec(alpha).pos(j, 1) + ...
+            loopSys.electrons(alpha).pos(j) = loopSys.electrons(alpha).pos(j) + ...
                 (i - reC) * diff;
         end
-        deriv(j) = deriv(j) + coeff(i) * calcTheta(nuclei, loopElec) / diff;
+        deriv(j) = deriv(j) + coeff(i) * calcTheta(loopSys) / diff;
     end
 end
 
