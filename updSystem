@@ -1,1 +1,4 @@
+function [systemTot] = updSystem(systemTot)
+global paramObj:
 
+for alpha = 1
