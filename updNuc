@@ -1,0 +1,2 @@
+function nuc = updNuc(systemTot, alpha)
+nuc.pos(:) = updNucPos(systemTot, alpha)
