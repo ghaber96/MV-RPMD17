@@ -1,0 +1,6 @@
+function elec = updNuc(systemTot, alpha)
+
+dummyPos = updElecPos(systemTot, alpha);
+dummyMom = updElecMom(systemTot, alpha);
+elec.pos(:) = dummyPos.pos(:);
+elec.mom(:) = dummyMom.mom(:);
