@@ -1,1 +1,16 @@
-s
+function [oElec] = updElecPos(systemTot, alpha)
+% update the nuclear momentum
+global paramObj
+
+coeff = MyConstants.ADAMS_FOURTH;
+pre = paramObj.ringSize / paramObj.beta;
+
+oNucleus = systemTot(1).nuclei(alpha);
+
+for time = 1:length(coeff)
+    oNucleus.mom(:) = oNucleus.mom(:) + timeStep * coeff(time) / 24 * ...
+        (pre1 * systemTot(time).nuclei(alpha).accel(:) - ...
+        systemTot(time).nuclei(alpha).dVndR(:) + pre2 /...
+        systemTot(time).theta * systemTot(time).nuclei(alpha).dThdR(:));
+end
+end
