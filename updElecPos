@@ -5,12 +5,11 @@ global paramObj
 coeff = MyConstants.ADAMS_FOURTH;
 pre = paramObj.ringSize / paramObj.beta;
 
-oNucleus = systemTot(1).nuclei(alpha);
+oElec = systemTot(1).electrons(alpha);
 
 for time = 1:length(coeff)
-    oNucleus.mom(:) = oNucleus.mom(:) + timeStep * coeff(time) / 24 * ...
-        (pre1 * systemTot(time).nuclei(alpha).accel(:) - ...
-        systemTot(time).nuclei(alpha).dVndR(:) + pre2 /...
-        systemTot(time).theta * systemTot(time).nuclei(alpha).dThdR(:));
+    oElec.pos(:) = oElec.pos(:) + timeStep * coeff(time) / 24 * ...
+        (2 * pre * systemTot(time).electrons(alpha).mom(:) - ...
+        pre / systemTot(time).theta * systemTot(time).electrons(alpha).dThdp(:));
 end
 end
