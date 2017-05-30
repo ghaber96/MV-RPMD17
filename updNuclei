@@ -1,0 +1,12 @@
+function nuclei = updNuclei(systemTot)
+
+global paramObj;
+beads = paramObj.ringSize;
+
+for alpha = 1:beads
+  nuclei(alpha) = updNuc(systemTot, alpha);
+end
+for alpha = 1:beads
+  nuclei(alpha).accel = calcAccel(nuclei, alpha);
+end
+end
