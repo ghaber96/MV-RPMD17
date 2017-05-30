@@ -6,7 +6,7 @@ function [oNuc] = updNucPos(systemTot, alpha)
 global paramObj;
 % set up array with coefficients from Adams-Bashforth method
 coeff = MyConstants.ADAMS_FOURTH;
-iNuc = nuclei(alpha);
+iNuc = systemTot(1).nuclei(alpha);
 oNuc = iNuc;
 % update for every dimension (x, y, z)
 % Update the position of the nucleus according to adams fourth order soln
