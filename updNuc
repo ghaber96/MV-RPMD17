@@ -1,2 +1,6 @@
 function nuc = updNuc(systemTot, alpha)
-nuc.pos(:) = updNucPos(systemTot, alpha)
+
+dummyPos = updNucPos(systemTot, alpha);
+dummyMom = updNucMom(systemTot, alpha);
+nuc.pos(:) = dummyPos.pos(:);
+nuc.mom(:) = dummyMom.mom(:);
